@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Implemented GA core">
+    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Fixed bug in findButtons method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/FingeringProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FingeringProblem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FingeringRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FingeringRunner.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701788882749</updated>
-      <workItem from="1701788884250" duration="3757000" />
+      <workItem from="1701788884250" duration="7660000" />
     </task>
     <task id="LOCAL-00001" summary="Created project">
       <created>1701789506457</created>
@@ -104,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701790557876</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixed bug in findButtons method">
+      <created>1701792847506</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701792847506</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,42 +144,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created project" />
     <MESSAGE value="Implemented GA core" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented GA core" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FingeringProblem.java</url>
-          <line>109</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FingeringProblem.java</url>
-          <line>115</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FingeringProblem.java</url>
-          <line>120</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FingeringProblem.java</url>
-          <line>122</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FingeringProblem.java</url>
-          <line>125</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FingeringProblem.java</url>
-          <line>97</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Fixed bug in findButtons method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in findButtons method" />
   </component>
 </project>

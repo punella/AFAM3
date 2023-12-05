@@ -15,17 +15,18 @@ public class FingeringRunner {
     public static void main(String[] args){
 
         final int MAX_EVALS = 100000;
-        final int POPULATION_SIZE = 1000;
+        final int POPULATION_SIZE = 100;
 
         //sheet mock
         List<Integer> fakeSheet = new ArrayList<>();
-        fakeSheet.add(1);
-        fakeSheet.add(2);
-        fakeSheet.add(3);
-        fakeSheet.add(4);
-        fakeSheet.add(5);
-        fakeSheet.add(6);
-        fakeSheet.add(7);
+        fakeSheet.add(13);
+        fakeSheet.add(15);
+        fakeSheet.add(17);
+        fakeSheet.add(18);
+        fakeSheet.add(20);
+        fakeSheet.add(22);
+        fakeSheet.add(24);
+        fakeSheet.add(25);
 
         FingeringProblem problem = new FingeringProblem(fakeSheet);
         BinaryTournamentSelection<IntegerSolution> selection = new BinaryTournamentSelection<>();

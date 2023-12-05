@@ -1,6 +1,5 @@
 import org.uma.jmetal.problem.integerproblem.impl.AbstractIntegerProblem;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
-import org.uma.jmetal.util.JMetalLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +41,7 @@ public class FingeringProblem extends AbstractIntegerProblem {
 
         instantiateButtonsMatrix();
 
-        //numberOfConstraints(1);
-        numberOfObjectives(3);
+        numberOfObjectives(4);
 
         List<Integer> lowerBound = new ArrayList<>();
         List<Integer> upperBound = new ArrayList<>();
@@ -58,14 +56,11 @@ public class FingeringProblem extends AbstractIntegerProblem {
     public IntegerSolution evaluate(IntegerSolution integerSolution) {
 
         integerSolution.objectives()[0] = computeRepetitions(integerSolution.variables());
-        integerSolution.objectives()[1] = computeUncomfortablePositions(integerSolution.variables());
-        integerSolution.objectives()[2] = computeFingerDistance(integerSolution.variables());
+        int[] uncomfortablePositions = computeUncomfortablePositions(integerSolution.variables());
+        integerSolution.objectives()[1] = uncomfortablePositions[0];
+        integerSolution.objectives()[2] = uncomfortablePositions[1];
+        integerSolution.objectives()[3] = computeFingerDistance(integerSolution.variables());
 
-        /*
-        int fingerCrossing = computeFingerCrossing();
-        integerSolution.getObjectives()[2] = fingerCrossing;*/
-
-        //evaluateConstraints(integerSolution);
         return integerSolution;
     }
 
@@ -91,15 +86,17 @@ public class FingeringProblem extends AbstractIntegerProblem {
     //Calcoliamo la distanza tra i bottoni (con entrambe le alternative per i tasti doppioni)
     //Se la soluzione eccede la distanza, incrementiamo il numero di posizioni non confortevoli (da minimizzare)
 
-    public int computeUncomfortablePositions(List<Integer> fingering){
-        int uncomfortablePositions = 0;
+    public int[] computeUncomfortablePositions(List<Integer> fingering){
+        int[] uncomfortablePositions = new int[2];
+        int unreachableButtons = 0;
+        int fingerCrossings = 0;
 
         //Stabilisco il primo bottone
         List<Button> startingButtons = findButtons(sheet.get(0));
 
         for(int i=0; i<sheet.size()-1; i++){
 
-            int prevNote = sheet.get(i);
+            //int prevNote = sheet.get(i);
             int nextNote = sheet.get(i+1);
 
             int prevFing = fingering.get(i);
@@ -114,19 +111,37 @@ public class FingeringProblem extends AbstractIntegerProblem {
                 for(Button landing : landingButtons){
                     if(starting.computeDistance(landing) <= maxFingerDistance){
                         comfortableButtons.add(landing);
+                        if(isFingerCrossing(prevFing, nextFing, starting, landing))
+                            fingerCrossings++;
                     }
                 }
             }
 
             if(comfortableButtons.isEmpty()){
-                uncomfortablePositions++;
+                unreachableButtons++;
                 startingButtons = landingButtons;
             } else {
-                //startingButtons.clear();
                 startingButtons = comfortableButtons;
             }
         }
+
+        uncomfortablePositions[0] = unreachableButtons;
+        uncomfortablePositions[1] = fingerCrossings;
         return uncomfortablePositions;
+    }
+
+    private boolean isFingerCrossing(int prevFing, int nextFing, Button prevBut, Button nextBut){
+        if(prevBut.getRow()==nextBut.getRow()){
+            if(prevBut.getCol()<nextBut.getCol()&&prevFing>nextFing)
+                return true;
+            if(prevBut.getCol()>nextBut.getCol()&&prevFing<nextFing)
+                return true;
+        }
+        if(nextBut.getRow()<prevBut.getRow()){
+            if(prevFing!=1 && nextFing>prevFing)
+                return true;
+        }
+        return false;
     }
 
     private List<Button> findButtons(Integer note){
@@ -151,17 +166,4 @@ public class FingeringProblem extends AbstractIntegerProblem {
         }
         return buttons;
     }
-
-    /*
-    public void evaluateConstraints(IntegerSolution integerSolution){
-
-        List<Integer> fingering = integerSolution.variables();
-        int repetitions = 0;
-        for(int i=1; i<sheet.size(); i++){
-            if(fingering.get(i) == fingering.get(i-1))
-                repetitions++;
-        }
-        integerSolution.constraints()[0] = -1.0 * repetitions;
-    }
-    */
 }
