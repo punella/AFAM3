@@ -133,7 +133,7 @@ public class FingeringProblem extends AbstractIntegerProblem {
         List<Button> buttons = new ArrayList<>();
         if(note%3 == 0){
             for(int i = 0; i < 23; i++){
-                if(BUTTONS_MATRIX[i][2]==sheet.get(0)){
+                if(BUTTONS_MATRIX[i][2] == note){
                     buttons.add(new Button(i, 2));
                     break;
                 }
@@ -141,7 +141,7 @@ public class FingeringProblem extends AbstractIntegerProblem {
         }else {
             for (int i = 0; i < 23; i++) {
                 for (int j = 0; j < 5; j++) {
-                    if (BUTTONS_MATRIX[i][j] == sheet.get(0)) {
+                    if (BUTTONS_MATRIX[i][j] == note) {
                         buttons.add(new Button(i, j));
                         if(buttons.size()==2)
                             break;
