@@ -1,3 +1,5 @@
+package model;
+
 import java.util.logging.Logger;
 
 public class Button {
@@ -85,8 +87,8 @@ public class Button {
             return 8.5 + (rd-1) * 1.5;
         }
 
-        Logger logger = Logger.getLogger("Button distance");
-        logger.warning("Button configuration not found.");
+        Logger logger = Logger.getLogger("Model.Button distance");
+        logger.warning("Model.Button configuration not found.");
         return -1;
     }
 }

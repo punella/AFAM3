@@ -1,6 +1,8 @@
+package AI;
+
+import model.Button;
 import org.uma.jmetal.problem.integerproblem.impl.AbstractIntegerProblem;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
-
 import java.util.ArrayList;
 import java.util.List;
 
