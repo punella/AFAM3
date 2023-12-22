@@ -42,6 +42,8 @@ public class MusicSheetFileHandler {
 
         ArrayList<Integer> sheet = new ArrayList<>();
 
+        boolean lastClefWasG = true;
+
         for(int i = 0; i < notes.getLength(); i++) {
 
             Node node = notes.item(i);
@@ -52,35 +54,60 @@ public class MusicSheetFileHandler {
 
                 Element pitch = (Element) note.getElementsByTagName("pitch").item(0);
 
-                if(pitch!=null && !isChord(note) && isRightHandStaff(note)){
+                if((!measureHasAClef(note)&&lastClefWasG)||(measureHasAClef(note)&&isGClef(note))){
 
-                    //Non è una pausa, non è un accordo, non è il manuale sinistro
+                    //Siamo in chiave di violino
+                    lastClefWasG = true;
 
-                    String sstep = pitch.getElementsByTagName("step").item(0).getTextContent();
-                    int step = 0;
-                    switch(sstep){
-                        case "A": step=10; break;
-                        case "B": step=12; break;
-                        case "C": step=1; break;
-                        case "D": step=3; break;
-                        case "E": step=5; break;
-                        case "F": step=6; break;
-                        case "G": step=8; break;
+                    if(pitch!=null && !isChord(note) && isRightHandStaff(note)){
+
+                        //Non è una pausa, non è un accordo, non è il manuale sinistro
+
+                        String sstep = pitch.getElementsByTagName("step").item(0).getTextContent();
+                        int step = 0;
+                        switch (sstep) {
+                            case "A":
+                                step = 10;
+                                break;
+                            case "B":
+                                step = 12;
+                                break;
+                            case "C":
+                                step = 1;
+                                break;
+                            case "D":
+                                step = 3;
+                                break;
+                            case "E":
+                                step = 5;
+                                break;
+                            case "F":
+                                step = 6;
+                                break;
+                            case "G":
+                                step = 8;
+                                break;
+                        }
+                        Node acc = pitch.getElementsByTagName("accidental").item(0);
+                        if (acc != null) {
+                            String sacc = acc.getTextContent();
+                            if (sacc.equals("sharp"))
+                                step++;
+                            else if (sacc.equals("flat"))
+                                step--;
+                        }
+                        int octave = Integer.parseInt(pitch.getElementsByTagName("octave").item(0).getTextContent());
+                        sheet.add(step + 12 * (octave - 2));
                     }
-                    Node acc = pitch.getElementsByTagName("accidental").item(0);
-                    if(acc!=null){
-                        String sacc = acc.getTextContent();
-                        if(sacc.equals("sharp"))
-                            step++;
-                        else if(sacc.equals("flat"))
-                            step--;
-                    }
-                    int octave = Integer.parseInt(pitch.getElementsByTagName("octave").item(0).getTextContent());
-                    sheet.add(step+12*(octave-2));
+                } else{
+                    lastClefWasG = false;
                 }
 
             }
         }
+
+        sheet.forEach(System.out::println);
+
         return sheet;
     }
 
@@ -88,6 +115,8 @@ public class MusicSheetFileHandler {
 
         int j = 0;
 
+        boolean lastClefWasG = true;
+
         for(int i = 0; i < notes.getLength(); i++) {
 
             Node node = notes.item(i);
@@ -97,18 +126,25 @@ public class MusicSheetFileHandler {
                 Element note = (Element) node;
                 Element pitch = (Element) note.getElementsByTagName("pitch").item(0);
 
-                if(pitch!=null && !isChord(note) && isRightHandStaff(note)){
-                    Node notationsNode = doc.createElement("notations");
-                    Node technicalNode = doc.createElement("technical");
-                    Node fingeringNode = doc.createElement("fingering");
-                    Node fingeringText = doc.createTextNode(fingering.get(j++).toString());
-                    fingeringNode.appendChild(fingeringText);
-                    technicalNode.appendChild(fingeringNode);
-                    notationsNode.appendChild(technicalNode);
-                    if(note.getElementsByTagName("notations").item(0)!=null)
-                        node.replaceChild(notationsNode, note.getLastChild());
-                    else
-                        node.appendChild(notationsNode);
+                if((!measureHasAClef(note)&&lastClefWasG)||(measureHasAClef(note)&&isGClef(note))) {
+
+                    lastClefWasG = true;
+
+                    if (pitch != null && !isChord(note) && isRightHandStaff(note)) {
+                        Node notationsNode = doc.createElement("notations");
+                        Node technicalNode = doc.createElement("technical");
+                        Node fingeringNode = doc.createElement("fingering");
+                        Node fingeringText = doc.createTextNode(fingering.get(j++).toString());
+                        fingeringNode.appendChild(fingeringText);
+                        technicalNode.appendChild(fingeringNode);
+                        notationsNode.appendChild(technicalNode);
+                        if (note.getElementsByTagName("notations").item(0) != null)
+                            node.replaceChild(notationsNode, note.getLastChild());
+                        else
+                            node.appendChild(notationsNode);
+                    }
+                } else{
+                    lastClefWasG = false;
                 }
 
             }
@@ -138,6 +174,7 @@ public class MusicSheetFileHandler {
     }
 
     //Semplificazione #2: niente polifonia
+    //(andrebbe implementato un controllo anche sulle durate)
     private boolean isChord(Element note){
         return note.getElementsByTagName("chord").item(0)!=null;
     }
@@ -149,5 +186,28 @@ public class MusicSheetFileHandler {
             if (!fifths.item(i).getTextContent().equals("0"))
                 return true;
         return false;
+    }
+
+    //Semplificazione #4: solo chiave di violino
+    private boolean isGClef(Element note){
+        Element measure = (Element) note.getParentNode();
+        Element attributes = (Element) measure.getElementsByTagName("attributes").item(0);
+        Element clef = (Element) attributes.getElementsByTagName("clef").item(0);
+        Element sign = (Element) clef.getElementsByTagName("sign").item(0);
+        return sign.getTextContent().equals("G");
+    }
+
+    private boolean measureHasAClef(Element note){
+        Element measure = (Element) note.getParentNode();
+        Element attributes = (Element) measure.getElementsByTagName("attributes").item(0);
+        if(attributes==null)
+            return false;
+        Element clef = (Element) attributes.getElementsByTagName("clef").item(0);
+        if(clef==null)
+            return false;
+        Element sign = (Element) clef.getElementsByTagName("sign").item(0);
+        if(sign==null)
+            return false;
+        return true;
     }
 }

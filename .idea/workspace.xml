@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Added Coordinator class, rearranged packages">
-      <change afterPath="$PROJECT_DIR$/src/main/java/logic/NotImplementedYetException.java" afterDir="false" />
+    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Simplified GUI, added some logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/FileChoosingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/FileChoosingWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/ProcessingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/ProcessingWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/logic/Coordinator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/Coordinator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/logic/MusicSheetFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/MusicSheetFileHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +86,7 @@
       <workItem from="1702400329994" duration="3791000" />
       <workItem from="1703070048330" duration="19296000" />
       <workItem from="1703156645616" duration="13615000" />
-      <workItem from="1703243907550" duration="16646000" />
+      <workItem from="1703243907550" duration="22912000" />
     </task>
     <task id="LOCAL-00001" summary="Created project">
       <created>1701789506457</created>
@@ -162,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703190774415</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Simplified GUI, added some logic">
+      <created>1703267667876</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1703267667876</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,7 +203,8 @@
     <MESSAGE value="Implemented GUI" />
     <MESSAGE value="Implemented file handling" />
     <MESSAGE value="Added Coordinator class, rearranged packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Coordinator class, rearranged packages" />
+    <MESSAGE value="Simplified GUI, added some logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplified GUI, added some logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
