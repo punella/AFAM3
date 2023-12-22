@@ -54,14 +54,14 @@ public class FileChoosingWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null);
-        setVisible(true);
+       // setVisible(true);
     }
 
     private void chooseFile(){
 
-        JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser(new File("./src/main/resources"));
         fileChooser.setDialogTitle("Scegli il file");
-        fileChooser.setFileFilter(new FileNameExtensionFilter("MusicXML", "xml"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("MusicXML", "xml", "musicxml"));
         int result = fileChooser.showOpenDialog(this);
 
         if (result == JFileChooser.APPROVE_OPTION) {

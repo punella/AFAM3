@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Implemented XML parser">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AI/FingeringRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GUI/FileChoosingWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GUI/ProcessingWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/logic/Coordinator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/logic/MusicSheetFileHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/iconLogo.png" afterDir="false" />
+    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Added Coordinator class, rearranged packages">
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic/NotImplementedYetException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FingeringProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AI/FingeringProblem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FingeringRunner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ProgramGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/FileChoosingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/FileChoosingWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/ProcessingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/ProcessingWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/Coordinator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/Coordinator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/MusicSheetFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/MusicSheetFileHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +89,8 @@
       <workItem from="1701898187979" duration="6885000" />
       <workItem from="1702400329994" duration="3791000" />
       <workItem from="1703070048330" duration="19296000" />
-      <workItem from="1703156645616" duration="13145000" />
+      <workItem from="1703156645616" duration="13615000" />
+      <workItem from="1703243907550" duration="16646000" />
     </task>
     <task id="LOCAL-00001" summary="Created project">
       <created>1701789506457</created>
@@ -147,7 +141,28 @@
       <option name="project" value="LOCAL" />
       <updated>1701905056398</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Implemented GUI">
+      <created>1703190571060</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1703190571060</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Implemented file handling">
+      <created>1703190701456</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1703190701456</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added Coordinator class, rearranged packages">
+      <created>1703190774415</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1703190774415</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,6 +197,24 @@
     <MESSAGE value="Fixed bug in findButtons method" />
     <MESSAGE value="Added finger crossing GA objective" />
     <MESSAGE value="Implemented XML parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented XML parser" />
+    <MESSAGE value="Implemented GUI" />
+    <MESSAGE value="Implemented file handling" />
+    <MESSAGE value="Added Coordinator class, rearranged packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Coordinator class, rearranged packages" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.sun.org.apache.xerces.internal.dom.DeferredElementImpl" memberName="attributes" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

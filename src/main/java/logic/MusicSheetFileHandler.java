@@ -20,13 +20,15 @@ public class MusicSheetFileHandler {
     private NodeList notes;
     private Document doc;
 
-    public MusicSheetFileHandler(File file){
+    public MusicSheetFileHandler(File file) throws NotImplementedYetException {
         this.file = file;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
             doc = db.parse(file);
             doc.getDocumentElement().normalize();
+            if(hasKeySignature())
+                throw new NotImplementedYetException("Missing feature: key signature");
             notes = doc.getElementsByTagName("note");
         } catch (ParserConfigurationException | IOException | SAXException e) {
             throw new RuntimeException(e);
@@ -35,7 +37,6 @@ public class MusicSheetFileHandler {
 
     //Parsing del file xml
     //Estrae solo il pitch di ogni nota (ignora le pause)
-    //IMPLEMENTARE LOGICA PER ESCLUDERE IL MANUALE SINISTRO
     //CORREGGERE LOGICA PER ALTERAZIONI NELLA STESSA BATTUTA
     public List<Integer> getSheetFromFile(){
 
@@ -49,15 +50,11 @@ public class MusicSheetFileHandler {
 
                 Element note = (Element) node;
 
-                //CORREZIONE: FARE CONTROLLO SUL FIRST CHILD
-                //così ignoriamo anche gli accordi (il first child è "chord")
                 Element pitch = (Element) note.getElementsByTagName("pitch").item(0);
 
-                //CORREZIONE: FARE CONTROLLO SU ELEMENTO STAFF FIGLIO DI NOTE
-                //se staff esiste, deve essere uguale a 1, altrimenti la nota viene ignorata
-                //così consideriamo solo la mano destra e gli spartiti con un solo pentagramma
+                if(pitch!=null && !isChord(note) && isRightHandStaff(note)){
 
-                if(pitch!=null){
+                    //Non è una pausa, non è un accordo, non è il manuale sinistro
 
                     String sstep = pitch.getElementsByTagName("step").item(0).getTextContent();
                     int step = 0;
@@ -100,9 +97,7 @@ public class MusicSheetFileHandler {
                 Element note = (Element) node;
                 Element pitch = (Element) note.getElementsByTagName("pitch").item(0);
 
-                //STESSI CONTROLLI DI SOPRA
-
-                if(pitch!=null){
+                if(pitch!=null && !isChord(note) && isRightHandStaff(note)){
                     Node notationsNode = doc.createElement("notations");
                     Node technicalNode = doc.createElement("technical");
                     Node fingeringNode = doc.createElement("fingering");
@@ -110,7 +105,7 @@ public class MusicSheetFileHandler {
                     fingeringNode.appendChild(fingeringText);
                     technicalNode.appendChild(fingeringNode);
                     notationsNode.appendChild(technicalNode);
-                    if(note.getLastChild().getNodeName().equals("notations"))
+                    if(note.getElementsByTagName("notations").item(0)!=null)
                         node.replaceChild(notationsNode, note.getLastChild());
                     else
                         node.appendChild(notationsNode);
@@ -134,5 +129,25 @@ public class MusicSheetFileHandler {
         } catch (TransformerException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    //Semplificazione #1: solo manuale destro
+    private boolean isRightHandStaff(Element note){
+        Element staff = (Element) note.getElementsByTagName("staff").item(0);
+        return staff == null || staff.getTextContent().equals("1");
+    }
+
+    //Semplificazione #2: niente polifonia
+    private boolean isChord(Element note){
+        return note.getElementsByTagName("chord").item(0)!=null;
+    }
+
+    //Semplificazione #3: niente alterazioni in chiave
+    private boolean hasKeySignature(){
+        NodeList fifths = doc.getElementsByTagName("fifths");
+        for(int i=0; i< fifths.getLength(); i++)
+            if (!fifths.item(i).getTextContent().equals("0"))
+                return true;
+        return false;
     }
 }
