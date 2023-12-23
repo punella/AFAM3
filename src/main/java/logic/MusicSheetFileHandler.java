@@ -38,9 +38,10 @@ public class MusicSheetFileHandler {
     //Parsing del file xml
     //Estrae solo il pitch di ogni nota (ignora le pause)
     //CORREGGERE LOGICA PER ALTERAZIONI NELLA STESSA BATTUTA
-    public List<Integer> getSheetFromFile(){
+    public List<List<Integer>> getSheetFromFile(){
 
-        ArrayList<Integer> sheet = new ArrayList<>();
+        List<List<Integer>> sheet = new ArrayList<>();
+        List<Integer> phrase = new ArrayList<>();
 
         boolean lastClefWasG = true;
 
@@ -62,6 +63,7 @@ public class MusicSheetFileHandler {
                     if(pitch!=null && !isChord(note) && isRightHandStaff(note)){
 
                         //Non è una pausa, non è un accordo, non è il manuale sinistro
+                        //La nota viene presa in considerazione dal problema
 
                         String sstep = pitch.getElementsByTagName("step").item(0).getTextContent();
                         int step = 0;
@@ -97,7 +99,11 @@ public class MusicSheetFileHandler {
                                 step--;
                         }
                         int octave = Integer.parseInt(pitch.getElementsByTagName("octave").item(0).getTextContent());
-                        sheet.add(step + 12 * (octave - 2));
+                        phrase.add(step + 12 * (octave - 2));
+                    } else if(isRest(note) && !phrase.isEmpty()){
+                        //Dopo ogni pausa, comincia una nuova frase
+                        sheet.add(phrase);
+                        phrase = new ArrayList<>();
                     }
                 } else{
                     lastClefWasG = false;
@@ -106,7 +112,7 @@ public class MusicSheetFileHandler {
             }
         }
 
-        sheet.forEach(System.out::println);
+        //sheet.forEach(System.out::println);
 
         return sheet;
     }
@@ -209,5 +215,9 @@ public class MusicSheetFileHandler {
         if(sign==null)
             return false;
         return true;
+    }
+
+    private boolean isRest(Element note){
+        return note.getElementsByTagName("rest").item(0) != null;
     }
 }

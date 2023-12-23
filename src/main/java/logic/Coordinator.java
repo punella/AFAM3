@@ -35,18 +35,12 @@ public class Coordinator {
             processingWindow.notifyNotImplementedFeature("Il programma non è (ancora) in grado di leggere le alterazioni in chiave.");
         }
 
-        //processingWindow.notifyStatus("Parsing del file XML...");
-        //processingWindow.notifyStatus("Calcolo della diteggiatura...");
-
-        FingeringRunner fr = new FingeringRunner(coordinator, fileHandler.getSheetFromFile());
-        fr.start();
+       FingeringRunner fr = new FingeringRunner(coordinator, fileHandler.getSheetFromFile());
+       fr.start();
     }
 
     public void manageSolution(List<Integer> solution){
-        //processingWindow.notifyStatus("Diteggiatura ottenuta.");
-        //processingWindow.notifyStatus("Scrittura della diteggiatura su file...");
         fileHandler.writeFingeringOnFile(solution);
-        //processingWindow.notifyStatus("File annotato.");
         processingWindow.completeProcess();
     }
 

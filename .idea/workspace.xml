@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Simplified GUI, added some logic">
+    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Added G clef logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AI/FingeringRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AI/FingeringRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/Coordinator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/Coordinator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/logic/MusicSheetFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/MusicSheetFileHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +88,8 @@
       <workItem from="1702400329994" duration="3791000" />
       <workItem from="1703070048330" duration="19296000" />
       <workItem from="1703156645616" duration="13615000" />
-      <workItem from="1703243907550" duration="22912000" />
+      <workItem from="1703243907550" duration="22954000" />
+      <workItem from="1703346530504" duration="6517000" />
     </task>
     <task id="LOCAL-00001" summary="Created project">
       <created>1701789506457</created>
@@ -165,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703267667876</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added G clef logic">
+      <created>1703278176957</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1703278176957</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +214,8 @@
     <MESSAGE value="Implemented file handling" />
     <MESSAGE value="Added Coordinator class, rearranged packages" />
     <MESSAGE value="Simplified GUI, added some logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Simplified GUI, added some logic" />
+    <MESSAGE value="Added G clef logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added G clef logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
