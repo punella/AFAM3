@@ -84,7 +84,9 @@ public class ProcessingWindow extends JFrame {
     public void notifyNotImplementedFeature(String missingFeature){
         setVisible(false);
         String[] options = {"Scegli un altro spartito", "Esci"};
-        int choice = JOptionPane.showOptionDialog(this, missingFeature, "Feature mancante", 0,0,null, options, options[1]);
+        int choice = JOptionPane.showOptionDialog(this,
+                "Il programma non è (ancora) in grado di " + missingFeature, "Feature mancante",
+                0,0, null, options, options[1]);
        // JOptionPane.showMessageDialog(this, missingFeature, "Feature mancante", JOptionPane.ERROR_MESSAGE);
         if(choice==0){
             uploadAnotherSheet();

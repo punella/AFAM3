@@ -31,12 +31,11 @@ public class Coordinator {
         processingWindow.setVisible(true);
         try {
             fileHandler = new MusicSheetFileHandler(file);
+            FingeringRunner fr = new FingeringRunner(coordinator, fileHandler.getSheetFromFile());
+            fr.start();
         } catch (NotImplementedYetException e){
-            processingWindow.notifyNotImplementedFeature("Il programma non è (ancora) in grado di leggere le alterazioni in chiave.");
+            processingWindow.notifyNotImplementedFeature(e.getMessage());
         }
-
-       FingeringRunner fr = new FingeringRunner(coordinator, fileHandler.getSheetFromFile());
-       fr.start();
     }
 
     public void manageSolution(List<Integer> solution){

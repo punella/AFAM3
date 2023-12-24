@@ -28,7 +28,8 @@ public class MusicSheetFileHandler {
             doc = db.parse(file);
             doc.getDocumentElement().normalize();
             if(hasKeySignature())
-                throw new NotImplementedYetException("Missing feature: key signature");
+                //throw new NotImplementedYetException("Missing feature: key signature");
+                throw new NotImplementedYetException("leggere le alterazioni in chiave");
             notes = doc.getElementsByTagName("note");
         } catch (ParserConfigurationException | IOException | SAXException e) {
             throw new RuntimeException(e);
@@ -36,83 +37,105 @@ public class MusicSheetFileHandler {
     }
 
     //Parsing del file xml
-    //Estrae solo il pitch di ogni nota (ignora le pause)
-    //CORREGGERE LOGICA PER ALTERAZIONI NELLA STESSA BATTUTA
-    public List<List<Integer>> getSheetFromFile(){
+    //Estrae solo il tono e l'ottava di ogni nota, li salva in un unico valore
+    public List<List<Integer>> getSheetFromFile() throws NotImplementedYetException {
 
         List<List<Integer>> sheet = new ArrayList<>();
         List<Integer> phrase = new ArrayList<>();
 
         boolean lastClefWasG = true;
+        String lastMeasureNumber = "";
+        List<Integer> measureAccidentals = new ArrayList<>();
 
         for(int i = 0; i < notes.getLength(); i++) {
 
-            Node node = notes.item(i);
-
-            if(node.getNodeType() == Node.ELEMENT_NODE) {
-
-                Element note = (Element) node;
-
-                Element pitch = (Element) note.getElementsByTagName("pitch").item(0);
-
-                if((!measureHasAClef(note)&&lastClefWasG)||(measureHasAClef(note)&&isGClef(note))){
-
-                    //Siamo in chiave di violino
-                    lastClefWasG = true;
-
-                    if(pitch!=null && !isChord(note) && isRightHandStaff(note)){
-
-                        //Non è una pausa, non è un accordo, non è il manuale sinistro
-                        //La nota viene presa in considerazione dal problema
-
-                        String sstep = pitch.getElementsByTagName("step").item(0).getTextContent();
-                        int step = 0;
-                        switch (sstep) {
-                            case "A":
-                                step = 10;
-                                break;
-                            case "B":
-                                step = 12;
-                                break;
-                            case "C":
-                                step = 1;
-                                break;
-                            case "D":
-                                step = 3;
-                                break;
-                            case "E":
-                                step = 5;
-                                break;
-                            case "F":
-                                step = 6;
-                                break;
-                            case "G":
-                                step = 8;
-                                break;
-                        }
-                        Node acc = pitch.getElementsByTagName("accidental").item(0);
-                        if (acc != null) {
-                            String sacc = acc.getTextContent();
-                            if (sacc.equals("sharp"))
-                                step++;
-                            else if (sacc.equals("flat"))
-                                step--;
-                        }
-                        int octave = Integer.parseInt(pitch.getElementsByTagName("octave").item(0).getTextContent());
-                        phrase.add(step + 12 * (octave - 2));
-                    } else if(isRest(note) && !phrase.isEmpty()){
-                        //Dopo ogni pausa, comincia una nuova frase
-                        sheet.add(phrase);
-                        phrase = new ArrayList<>();
-                    }
-                } else{
-                    lastClefWasG = false;
-                }
-
+            Element note = (Element) notes.item(i);
+            Element pitch = (Element) note.getElementsByTagName("pitch").item(0);
+            Element measure = (Element) note.getParentNode();
+            String measureNumber = measure.getAttribute("number");
+            if(!measureNumber.equals(lastMeasureNumber) && !measureAccidentals.isEmpty()) {
+                measureAccidentals.clear();
+                lastMeasureNumber = measureNumber;
             }
+
+            if((!measureHasAClef(note)&&lastClefWasG)||(measureHasAClef(note)&&isGClef(note))){
+
+                //Siamo in chiave di violino
+                lastClefWasG = true;
+
+                if(pitch!=null && !isChord(note) && isRightHandStaff(note)){
+
+                    //Non è una pausa, non è un accordo, non è il manuale sinistro
+                    //La nota viene presa in considerazione dal problema
+
+                    String sstep = pitch.getElementsByTagName("step").item(0).getTextContent();
+                    int step = 0;
+                    switch (sstep) {
+                        case "A":
+                            step = 10;
+                            break;
+                        case "B":
+                            step = 12;
+                            break;
+                        case "C":
+                            step = 1;
+                            break;
+                        case "D":
+                            step = 3;
+                            break;
+                        case "E":
+                            step = 5;
+                            break;
+                        case "F":
+                            step = 6;
+                            break;
+                        case "G":
+                            step = 8;
+                            break;
+                    }
+
+                    //Il tono alterato è inserito nella lista delle alterazioni con valore positivo se diesis e negativo se bemolle
+
+                    //Ricerca di eventuali alterazioni sulla nota
+                    Node acc = note.getElementsByTagName("accidental").item(0);
+                    if (acc != null) {
+                        String sacc = acc.getTextContent();
+                        if (sacc.equals("sharp")){
+                            measureAccidentals.add(step);
+                            step++;
+                        }
+                        else if (sacc.equals("flat")){
+                            measureAccidentals.add(-step);
+                            step--;
+                        }
+                        else if(sacc.equals("natural")){
+                            measureAccidentals.remove((Object) step);
+                            measureAccidentals.remove((Object) (step*-1));
+                        }
+                        else
+                            throw new NotImplementedYetException("leggere segni di alterazione diversi da diesis, bemolle e bequadro");
+                    }
+
+                    //Ricerca di eventuali alterazioni nella battuta
+                    else if(measureAccidentals.contains(step))
+                        step++;
+                    else if(measureAccidentals.contains(-step))
+                        step--;
+
+                    int octave = Integer.parseInt(pitch.getElementsByTagName("octave").item(0).getTextContent());
+                    phrase.add(step + 12 * (octave - 2));
+                } else if(isRest(note) && !phrase.isEmpty()){
+                    //Dopo ogni pausa, comincia una nuova frase
+                    sheet.add(phrase);
+                    phrase = new ArrayList<>();
+                }
+            } else{
+                lastClefWasG = false;
+            }
+
         }
 
-        //sheet.forEach(System.out::println);
+        sheet.forEach(System.out::println);
 
         return sheet;
     }
