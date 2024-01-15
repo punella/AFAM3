@@ -100,20 +100,22 @@ public class MusicSheetFileHandler {
                     Node acc = note.getElementsByTagName("accidental").item(0);
                     if (acc != null) {
                         String sacc = acc.getTextContent();
-                        if (sacc.equals("sharp")){
-                            measureAccidentals.add(step);
-                            step++;
+                        switch (sacc) {
+                            case "sharp":
+                                measureAccidentals.add(step);
+                                step++;
+                                break;
+                            case "flat":
+                                measureAccidentals.add(-step);
+                                step--;
+                                break;
+                            case "natural":
+                                measureAccidentals.remove((Object) step);
+                                measureAccidentals.remove((Object) (step * -1));
+                                break;
+                            default:
+                                throw new NotImplementedYetException("leggere segni di alterazione diversi da diesis, bemolle e bequadro");
                         }
-                        else if (sacc.equals("flat")){
-                            measureAccidentals.add(-step);
-                            step--;
-                        }
-                        else if(sacc.equals("natural")){
-                            measureAccidentals.remove((Object) step);
-                            measureAccidentals.remove((Object) (step*-1));
-                        }
-                        else
-                            throw new NotImplementedYetException("leggere segni di alterazione diversi da diesis, bemolle e bequadro");
                     }
 
                     //Ricerca di eventuali alterazioni nella battuta
@@ -135,7 +137,10 @@ public class MusicSheetFileHandler {
 
         }
 
-        sheet.forEach(System.out::println);
+        if(!phrase.isEmpty())
+            sheet.add(phrase);
+
+        //sheet.forEach(System.out::println);
 
         return sheet;
     }
@@ -143,7 +148,6 @@ public class MusicSheetFileHandler {
     public void writeFingeringOnFile(List<Integer> fingering) {
 
         int j = 0;
-
         boolean lastClefWasG = true;
 
         for(int i = 0; i < notes.getLength(); i++) {
@@ -235,9 +239,7 @@ public class MusicSheetFileHandler {
         if(clef==null)
             return false;
         Element sign = (Element) clef.getElementsByTagName("sign").item(0);
-        if(sign==null)
-            return false;
-        return true;
+        return sign != null;
     }
 
     private boolean isRest(Element note){

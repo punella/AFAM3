@@ -20,6 +20,20 @@ public class Button {
         return col;
     }
 
+    public boolean hasDouble(){
+        return col!=2;
+    }
+
+    public Button getDouble(){
+        switch(col){
+            case 0: return new Button(row-1, 3);
+            case 1: return new Button(row-1, 4);
+            case 3: return new Button(row+1, 0);
+            case 4: return new Button(row+1, 1);
+            default: return null;
+        }
+    }
+
     public double computeDistance(Button button){
         if(row == button.getRow()) {
             int diff = Math.abs(col - button.getCol());

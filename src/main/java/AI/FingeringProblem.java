@@ -17,31 +17,11 @@ public class FingeringProblem extends AbstractIntegerProblem {
             {16, 11, 8, 5, 0}
     };
 
-    private final int[][] BUTTONS_MATRIX = new int[23][5];
-
-    private void instantiateButtonsMatrix(){
-        int noteValue = 1;
-        for(int i = 0; i < 23; i++){
-            for(int j = 0; j < 3; j++){
-                BUTTONS_MATRIX[i][j] = noteValue++;
-            }
-        }
-        noteValue = 4;
-        for(int i = 0; i < 23; i++){
-            for(int j = 3; j < 5; j++){
-                BUTTONS_MATRIX[i][j] = noteValue++;
-            }
-            noteValue++;
-        }
-    }
-
     public FingeringProblem(List<Integer> sheet){
         if(sheet.isEmpty())
             throw new IllegalArgumentException("Spartito vuoto.");
         this.sheet = sheet;
         int numberOfVariables = sheet.size();
-
-        instantiateButtonsMatrix();
 
         numberOfObjectives(4);
 
@@ -83,24 +63,16 @@ public class FingeringProblem extends AbstractIntegerProblem {
         return totalDistance;
     }
 
-    //Obiettivo modificato rispetto alla progettazione del problema
-    //Invece che calcolare la distanza tra i tasti, minimizziamo le occorrenze di soluzioni "non confortevoli"
-    //Calcoliamo la distanza tra i bottoni (con entrambe le alternative per i tasti doppioni)
-    //Se la soluzione eccede la distanza, incrementiamo il numero di posizioni non confortevoli (da minimizzare)
-
     public int[] computeUncomfortablePositions(List<Integer> fingering){
         int[] uncomfortablePositions = new int[2];
         int unreachableButtons = 0;
         int fingerCrossings = 0;
 
-        //Stabilisco il primo bottone
         List<Button> startingButtons = findButtons(sheet.get(0));
 
         for(int i=0; i<sheet.size()-1; i++){
 
-            //int prevNote = sheet.get(i);
             int nextNote = sheet.get(i+1);
-
             int prevFing = fingering.get(i);
             int nextFing = fingering.get(i+1);
 
@@ -112,7 +84,8 @@ public class FingeringProblem extends AbstractIntegerProblem {
             for(Button starting : startingButtons){
                 for(Button landing : landingButtons){
                     if(starting.computeDistance(landing) <= maxFingerDistance){
-                        comfortableButtons.add(landing);
+                        if(!comfortableButtons.contains(landing))
+                            comfortableButtons.add(landing);
                         if(isFingerCrossing(prevFing, nextFing, starting, landing))
                             fingerCrossings++;
                     }
@@ -140,32 +113,26 @@ public class FingeringProblem extends AbstractIntegerProblem {
                 return true;
         }
         if(nextBut.getRow()<prevBut.getRow()){
-            if(prevFing!=1 && nextFing>prevFing)
-                return true;
+            return prevFing != 1 && nextFing > prevFing;
         }
         return false;
     }
 
+    private Button findButton(Integer note){
+        switch(note % 3){
+            case 0: return new Button((note/3)-1, 2);
+            case 1: return new Button(note/3, 0);
+            case 2: return new Button(note/3, 1);
+            default: return null;
+        }
+    }
+
     private List<Button> findButtons(Integer note){
         List<Button> buttons = new ArrayList<>();
-        if(note%3 == 0){
-            for(int i = 0; i < 23; i++){
-                if(BUTTONS_MATRIX[i][2] == note){
-                    buttons.add(new Button(i, 2));
-                    break;
-                }
-            }
-        }else {
-            for (int i = 0; i < 23; i++) {
-                for (int j = 0; j < 5; j++) {
-                    if (BUTTONS_MATRIX[i][j] == note) {
-                        buttons.add(new Button(i, j));
-                        if(buttons.size()==2)
-                            break;
-                    }
-                }
-            }
-        }
+        Button button = findButton(note);
+        buttons.add(button);
+        if(button.hasDouble())
+            buttons.add(button.getDouble());
         return buttons;
     }
 }
