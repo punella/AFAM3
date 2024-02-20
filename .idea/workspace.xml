@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Improved button board modeling">
-      <change afterPath="$PROJECT_DIR$/src/main/java/AI/SolutionRepair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AI/FingeringProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AI/FingeringProblem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AI/FingeringRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AI/FingeringRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/logic/MusicSheetFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/MusicSheetFileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Button.java" afterDir="false" />
-    </list>
+    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Remodeled FingeringProblem" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,7 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="remodeling" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
