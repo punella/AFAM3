@@ -29,7 +29,7 @@ public class FingeringProblem extends AbstractIntegerProblem {
         List<Integer> upperBound = new ArrayList<>();
         for(int i=0; i<numberOfVariables; i++){
             lowerBound.add(1);
-            upperBound.add(5);
+            upperBound.add(10);
         }
         variableBounds(lowerBound, upperBound);
     }
@@ -37,72 +37,57 @@ public class FingeringProblem extends AbstractIntegerProblem {
     @Override
     public IntegerSolution evaluate(IntegerSolution integerSolution) {
 
+        SolutionRepair.repair(integerSolution, sheet);
+
+        Button[] buttonPath = getButtonPath(integerSolution.variables());
+
         integerSolution.objectives()[0] = computeRepetitions(integerSolution.variables());
-        int[] uncomfortablePositions = computeUncomfortablePositions(integerSolution.variables());
-        integerSolution.objectives()[1] = uncomfortablePositions[0];
-        integerSolution.objectives()[2] = uncomfortablePositions[1];
-        integerSolution.objectives()[3] = computeFingerDistance(integerSolution.variables());
+        integerSolution.objectives()[1] = computeUncomfortablePositions(buttonPath, integerSolution.variables());
+        integerSolution.objectives()[2] = computeHandShiftings(buttonPath, integerSolution.variables());
+        integerSolution.objectives()[3] = computeTotalDistance(buttonPath);
 
         return integerSolution;
     }
 
+    //Il terzo obiettivo potrebbe rendere inutile il primo:
+    // la distanza tra due bottoni non sarà mai minore di quella tra un dito e se stesso
     public int computeRepetitions(List<Integer> fingering){
         int repetitions = 0;
         for(int i=1; i<sheet.size(); i++){
-            if(fingering.get(i) == fingering.get(i-1))
+            if((fingering.get(i) % 5) == (fingering.get(i-1) % 5))
                 repetitions++;
         }
         return repetitions;
     }
 
-    public int computeFingerDistance(List<Integer> fingering){
-        int totalDistance = 0;
-        for(int i=0; i<sheet.size()-1; i++){
-            totalDistance += FINGER_DISTANCE_MATRIX[fingering.get(i)-1][fingering.get(i+1)-1];
+    public int computeUncomfortablePositions(Button[] buttonPath, List<Integer> fingering){
+        int uncomfortablePositions = 0;
+        for(int i = 1; i < buttonPath.length; i++) {
+            int prevFinger = toRealFinger(fingering.get(i - 1));
+            int nextFinger = toRealFinger(fingering.get(i));
+            if(isFingerCrossing(prevFinger, nextFinger, buttonPath[i-1], buttonPath[i]))
+                uncomfortablePositions++;
         }
-        return totalDistance;
+        return uncomfortablePositions;
     }
 
-    public int[] computeUncomfortablePositions(List<Integer> fingering){
-        int[] uncomfortablePositions = new int[2];
-        int unreachableButtons = 0;
-        int fingerCrossings = 0;
-
-        List<Button> startingButtons = findButtons(sheet.get(0));
-
-        for(int i=0; i<sheet.size()-1; i++){
-
-            int nextNote = sheet.get(i+1);
-            int prevFing = fingering.get(i);
-            int nextFing = fingering.get(i+1);
-
-            int maxFingerDistance = FINGER_DISTANCE_MATRIX[prevFing-1][nextFing-1];
-
-            List<Button> landingButtons = findButtons(nextNote);
-            List<Button> comfortableButtons = new ArrayList<>();
-
-            for(Button starting : startingButtons){
-                for(Button landing : landingButtons){
-                    if(starting.computeDistance(landing) <= maxFingerDistance){
-                        if(!comfortableButtons.contains(landing))
-                            comfortableButtons.add(landing);
-                        if(isFingerCrossing(prevFing, nextFing, starting, landing))
-                            fingerCrossings++;
-                    }
-                }
-            }
-
-            if(comfortableButtons.isEmpty()){
-                unreachableButtons++;
-                startingButtons = landingButtons;
-            } else {
-                startingButtons = comfortableButtons;
-            }
+    public int computeHandShiftings(Button[] buttonPath, List<Integer> fingering){
+        int handShiftings = 0;
+        for(int i = 1; i < buttonPath.length; i++) {
+            double distance = buttonPath[i - 1].computeDistance(buttonPath[i]);
+            int prevFinger = toRealFinger(fingering.get(i - 1)) - 1;
+            int nextFinger = toRealFinger(fingering.get(i)) - 1;
+            if(distance > FINGER_DISTANCE_MATRIX[prevFinger][nextFinger])
+                handShiftings++;
         }
+        return handShiftings;
+    }
 
-        uncomfortablePositions[0] = unreachableButtons;
-        uncomfortablePositions[1] = fingerCrossings;
-        return uncomfortablePositions;
+    public double computeTotalDistance(Button[] buttonPath){
+        double totalDistance = 0;
+        for(int i = 1; i < buttonPath.length; i++)
+            totalDistance += buttonPath[i-1].computeDistance(buttonPath[i]);
+        return totalDistance;
     }
 
     private boolean isFingerCrossing(int prevFing, int nextFing, Button prevBut, Button nextBut){
@@ -118,21 +103,39 @@ public class FingeringProblem extends AbstractIntegerProblem {
         return false;
     }
 
-    private Button findButton(Integer note){
-        switch(note % 3){
-            case 0: return new Button((note/3)-1, 2);
-            case 1: return new Button(note/3, 0);
-            case 2: return new Button(note/3, 1);
-            default: return null;
-        }
+    private Button[] getButtonPath(List<Integer> fingering){
+        Button[] buttonPath = new Button[sheet.size()];
+        for(int i = 0; i < sheet.size(); i++)
+            buttonPath[i] = getButton(sheet.get(i), fingering.get(i));
+        return buttonPath;
     }
 
-    private List<Button> findButtons(Integer note){
-        List<Button> buttons = new ArrayList<>();
-        Button button = findButton(note);
-        buttons.add(button);
-        if(button.hasDouble())
-            buttons.add(button.getDouble());
-        return buttons;
+    private Button getButton(Integer note, Integer finger){
+        Button button;
+        switch(note % 3){
+            case 0:
+                button = new Button((note/3)-1, 2);
+                break;
+            case 1:
+                button = new Button(note/3, 0);
+                break;
+            case 2:
+                button = new Button(note/3, 1);
+                break;
+            default: return null;
+        }
+        if(finger > 5){
+            if(button.hasDouble())
+                return button.getDouble();
+            throw new RuntimeException("Trovata soluzione inammissibile!");
+        }
+        return button;
     }
+
+    private int toRealFinger(Integer finger){
+        if(finger > 5)
+            return finger % 6 + 1;
+        return finger;
+    }
+
 }

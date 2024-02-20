@@ -28,8 +28,8 @@ public class Button {
         switch(col){
             case 0: return new Button(row-1, 3);
             case 1: return new Button(row-1, 4);
-            case 3: return new Button(row+1, 0);
-            case 4: return new Button(row+1, 1);
+            //case 3: return new Button(row+1, 0);
+            //case 4: return new Button(row+1, 1);
             default: return null;
         }
     }

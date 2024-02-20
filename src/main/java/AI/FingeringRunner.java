@@ -63,6 +63,17 @@ public class FingeringRunner extends Thread{
             IntegerSolution best = algorithm.result();
             JMetalLogger.logger.info(String.format("Best individual: %s", best));
 
+            String bestOne = "";
+            for(Integer n : best.variables()) {
+                if (n > 5) {
+                    n = n % 6 + 1;
+                    bestOne = bestOne + " (" + n + ")";
+                }
+                else
+                    bestOne = bestOne + " " + n;
+            }
+            JMetalLogger.logger.info(String.format("On music sheet: %s", bestOne));
+
             solution.addAll(best.variables());
         }
 

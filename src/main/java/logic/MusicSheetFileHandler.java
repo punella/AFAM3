@@ -167,7 +167,7 @@ public class MusicSheetFileHandler {
                         Node notationsNode = doc.createElement("notations");
                         Node technicalNode = doc.createElement("technical");
                         Node fingeringNode = doc.createElement("fingering");
-                        Node fingeringText = doc.createTextNode(fingering.get(j++).toString());
+                        Node fingeringText = doc.createTextNode(formatRealFinger(fingering.get(j++)));
                         fingeringNode.appendChild(fingeringText);
                         technicalNode.appendChild(fingeringNode);
                         notationsNode.appendChild(technicalNode);
@@ -244,5 +244,13 @@ public class MusicSheetFileHandler {
 
     private boolean isRest(Element note){
         return note.getElementsByTagName("rest").item(0) != null;
+    }
+
+    private String formatRealFinger(Integer finger){
+        if (finger > 5) {
+            finger = finger % 6 + 1;
+            return "(" + finger + ")";
+        }
+        return finger.toString();
     }
 }
