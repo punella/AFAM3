@@ -12,6 +12,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 
 public class MusicSheetFileHandler {
@@ -28,7 +29,6 @@ public class MusicSheetFileHandler {
             doc = db.parse(file);
             doc.getDocumentElement().normalize();
             if(hasKeySignature())
-                //throw new NotImplementedYetException("Missing feature: key signature");
                 throw new NotImplementedYetException("leggere le alterazioni in chiave");
             notes = doc.getElementsByTagName("note");
         } catch (ParserConfigurationException | IOException | SAXException e) {
@@ -134,13 +134,10 @@ public class MusicSheetFileHandler {
             } else{
                 lastClefWasG = false;
             }
-
         }
 
         if(!phrase.isEmpty())
             sheet.add(phrase);
-
-        //sheet.forEach(System.out::println);
 
         return sheet;
     }
@@ -183,10 +180,9 @@ public class MusicSheetFileHandler {
             }
         }
 
-
         //Scrittura su file
         try {
-            Transformer tf = TransformerFactory.newInstance().newTransformer();
+            Transformer tf = TransformerFactory.newInstance().newTransformer(new StreamSource(new File("./src/main/resources/XSLT.xslt")));
             tf.setOutputProperty(OutputKeys.INDENT, "yes");
             tf.setOutputProperty(OutputKeys.METHOD, "xml");
             tf.setOutputProperty(OutputKeys.STANDALONE, "no");
@@ -207,7 +203,6 @@ public class MusicSheetFileHandler {
     }
 
     //Semplificazione #2: niente polifonia
-    //(andrebbe implementato un controllo anche sulle durate)
     private boolean isChord(Element note){
         return note.getElementsByTagName("chord").item(0)!=null;
     }
