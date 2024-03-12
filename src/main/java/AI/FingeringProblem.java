@@ -23,13 +23,20 @@ public class FingeringProblem extends AbstractIntegerProblem {
         this.sheet = sheet;
         int numberOfVariables = sheet.size();
 
-        numberOfObjectives(4);
+        //numberOfObjectives(4);
+        numberOfObjectives(3);
 
         List<Integer> lowerBound = new ArrayList<>();
         List<Integer> upperBound = new ArrayList<>();
         for(int i=0; i<numberOfVariables; i++){
-            lowerBound.add(1);
-            upperBound.add(10);
+            if(sheet.get(i)%3==0){
+                lowerBound.add(1);
+                upperBound.add(5);
+            }
+            else{
+                lowerBound.add(1);
+                upperBound.add(10);
+            }
         }
         variableBounds(lowerBound, upperBound);
     }
@@ -37,21 +44,18 @@ public class FingeringProblem extends AbstractIntegerProblem {
     @Override
     public IntegerSolution evaluate(IntegerSolution integerSolution) {
 
-        SolutionRepair.repair(integerSolution, sheet);
-
         Button[] buttonPath = getButtonPath(integerSolution.variables());
 
-        integerSolution.objectives()[0] = computeRepetitions(integerSolution.variables());
-        integerSolution.objectives()[1] = computeUncomfortablePositions(buttonPath, integerSolution.variables());
-        integerSolution.objectives()[2] = computeHandShiftings(buttonPath, integerSolution.variables());
-        integerSolution.objectives()[3] = computeTotalDistance(buttonPath);
+        //integerSolution.objectives()[0] = computeRepetitions(integerSolution.variables());
+        integerSolution.objectives()[0] = computeUncomfortablePositions(buttonPath, integerSolution.variables());
+        integerSolution.objectives()[1] = computeHandShiftings(buttonPath, integerSolution.variables());
+        integerSolution.objectives()[2] = computeTotalDistance(buttonPath);
 
         return integerSolution;
     }
 
-    //Il terzo obiettivo potrebbe rendere inutile il primo:
-    // la distanza tra due bottoni non sarà mai minore di quella tra un dito e se stesso
-    public int computeRepetitions(List<Integer> fingering){
+    /*
+    public double computeRepetitions(List<Integer> fingering){
         int repetitions = 0;
         for(int i=1; i<sheet.size(); i++){
             if((fingering.get(i) % 5) == (fingering.get(i-1) % 5))
@@ -59,8 +63,9 @@ public class FingeringProblem extends AbstractIntegerProblem {
         }
         return repetitions;
     }
+     */
 
-    public int computeUncomfortablePositions(Button[] buttonPath, List<Integer> fingering){
+    public double computeUncomfortablePositions(Button[] buttonPath, List<Integer> fingering){
         int uncomfortablePositions = 0;
         for(int i = 1; i < buttonPath.length; i++) {
             int prevFinger = toRealFinger(fingering.get(i - 1));
@@ -71,13 +76,20 @@ public class FingeringProblem extends AbstractIntegerProblem {
         return uncomfortablePositions;
     }
 
-    public int computeHandShiftings(Button[] buttonPath, List<Integer> fingering){
+    public double computeHandShiftings(Button[] buttonPath, List<Integer> fingering){
         int handShiftings = 0;
         for(int i = 1; i < buttonPath.length; i++) {
             double distance = buttonPath[i - 1].computeDistance(buttonPath[i]);
             int prevFinger = toRealFinger(fingering.get(i - 1)) - 1;
             int nextFinger = toRealFinger(fingering.get(i)) - 1;
+
+            /*
             if(distance > FINGER_DISTANCE_MATRIX[prevFinger][nextFinger])
+                handShiftings++;
+            */
+
+            //Per incorporare le ripetizioni, aggiungiamo il controllo sui ribattuti
+            if(distance > FINGER_DISTANCE_MATRIX[prevFinger][nextFinger] || (distance == 0 && prevFinger == nextFinger))
                 handShiftings++;
         }
         return handShiftings;
