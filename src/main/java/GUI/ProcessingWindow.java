@@ -1,6 +1,5 @@
 package GUI;
 
-import com.formdev.flatlaf.FlatLaf;
 import logic.Coordinator;
 
 import javax.swing.*;
@@ -9,7 +8,6 @@ import java.awt.*;
 
 public class ProcessingWindow extends JFrame {
     private final Coordinator coordinator;
-    //private JTextArea statusNotifier;
     private JProgressBar progressBar;
     private JLabel label;
     private JButton uploadAnotherSheetButton, exitButton;
@@ -20,12 +18,6 @@ public class ProcessingWindow extends JFrame {
 
         setTitle("AFAM3");
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconLogo.png")));
-
-        /*
-        statusNotifier = new JTextArea(5, 30);
-        JScrollPane scrollPane = new JScrollPane(statusNotifier);
-        add(scrollPane);
-         */
 
         Box box = new Box(BoxLayout.Y_AXIS);
         EmptyBorder border = new EmptyBorder(20,20,20,20);
@@ -38,7 +30,6 @@ public class ProcessingWindow extends JFrame {
         progressBar.setBorder(border);
         label = new JLabel("Sto processando...");
         label.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        //label.setBorder(border);
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
         buttonPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -75,19 +66,12 @@ public class ProcessingWindow extends JFrame {
         exitButton.setEnabled(true);
     }
 
-    /*
-    public void notifyStatus(String status){
-        statusNotifier.append(status + "\n");
-    }
-     */
-
     public void notifyNotImplementedFeature(String missingFeature){
         setVisible(false);
         String[] options = {"Scegli un altro spartito", "Esci"};
         int choice = JOptionPane.showOptionDialog(this,
                 "Il programma non è (ancora) in grado di " + missingFeature, "Feature mancante",
                 0,0, null, options, options[1]);
-       // JOptionPane.showMessageDialog(this, missingFeature, "Feature mancante", JOptionPane.ERROR_MESSAGE);
         if(choice==0){
             uploadAnotherSheet();
         }

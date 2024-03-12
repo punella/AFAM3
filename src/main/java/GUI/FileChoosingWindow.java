@@ -31,19 +31,11 @@ public class FileChoosingWindow extends JFrame {
 
         chooserPanel.setLayout(new FlowLayout());
         chooserPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        //statusNotifier.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        //processButton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        //chooserPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-       // statusNotifier.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        //statusNotifier.setBorder(new EmptyBorder(10, 10, 10, 10));
-        //statusNotifier.setMargin(new Insets(10,10,10,10));
 
         chooserPanel.add(label);
         chooserPanel.add(path);
         chooserPanel.add(chooseFileButton);
         chooserPanel.add(processButton);
-
 
         JPanel containerPanel = new JPanel();
         containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.PAGE_AXIS));
@@ -54,7 +46,6 @@ public class FileChoosingWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null);
-       // setVisible(true);
     }
 
     private void chooseFile(){
