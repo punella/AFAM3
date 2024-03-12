@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Remodeled FingeringProblem" />
+    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Commentati cambiamenti fitness">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AI/FingeringRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AI/FingeringRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AI/SolutionRepair.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +64,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Naomi/Desktop/FIA/Implementazione algoritmi-20231018/Genetic Algorithms - Examples/ga-examples/ga-core&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Naomi/Desktop/FIA/AFAM3/src/main/resources&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -75,6 +79,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Naomi\Desktop\FIA\AFAM3\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="AI" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -101,6 +108,12 @@
       <workItem from="1708358615121" duration="2806000" />
       <workItem from="1708424351281" duration="9017000" />
       <workItem from="1708440759505" duration="6147000" />
+      <workItem from="1709113105022" duration="1793000" />
+      <workItem from="1709310859559" duration="10176000" />
+      <workItem from="1709402900307" duration="1861000" />
+      <workItem from="1709571566555" duration="44281000" />
+      <workItem from="1710186225729" duration="18067000" />
+      <workItem from="1710280971763" duration="1180000" />
     </task>
     <task id="LOCAL-00001" summary="Created project">
       <created>1701789506457</created>
@@ -207,7 +220,49 @@
       <option name="project" value="LOCAL" />
       <updated>1705342086784</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Remodeled FingeringProblem">
+      <created>1708448122485</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1708448122485</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Cancellati commenti superflui">
+      <created>1710254697898</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1710254697898</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Risolto problema spazi bianchi durante scrittura su file xml">
+      <created>1710254795690</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1710254795690</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Risolto problema spazi bianchi durante scrittura su file xml">
+      <created>1710254821693</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1710254821693</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Aggiunti spartiti d'esempio">
+      <created>1710255798566</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1710255798566</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Commentati cambiamenti fitness">
+      <created>1710255929609</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1710255929609</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +305,12 @@
     <MESSAGE value="Modified rest logic and GA input" />
     <MESSAGE value="Fixed accidentals logic" />
     <MESSAGE value="Improved button board modeling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved button board modeling" />
+    <MESSAGE value="Remodeled FingeringProblem" />
+    <MESSAGE value="Cancellati commenti superflui" />
+    <MESSAGE value="Risolto problema spazi bianchi durante scrittura su file xml" />
+    <MESSAGE value="Aggiunti spartiti d'esempio" />
+    <MESSAGE value="Commentati cambiamenti fitness" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commentati cambiamenti fitness" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -258,6 +318,10 @@
         <breakpoint type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.uma.jmetal.util.errorchecking.exception.InvalidConditionException" package="org.uma.jmetal.util.errorchecking.exception" />
+          <option name="timeStamp" value="2" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
