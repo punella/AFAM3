@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="AFAM3:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Commentati cambiamenti fitness">
+    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Maven build">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AI/FingeringRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AI/FingeringRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AI/SolutionRepair.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,30 +56,33 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="delegateBuildToMaven" value="true" />
+  </component>
   <component name="ProjectId" id="2Z81Qu6hVNTv39KHdBysXadprss" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Naomi/Desktop/FIA/AFAM3/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Naomi/Desktop/FIA/AFAM3/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Naomi\Desktop\FIA\AFAM3\src\main\resources" />
@@ -113,7 +120,8 @@
       <workItem from="1709402900307" duration="1861000" />
       <workItem from="1709571566555" duration="44281000" />
       <workItem from="1710186225729" duration="18067000" />
-      <workItem from="1710280971763" duration="1180000" />
+      <workItem from="1710280971763" duration="1267000" />
+      <workItem from="1710283114025" duration="4425000" />
     </task>
     <task id="LOCAL-00001" summary="Created project">
       <created>1701789506457</created>
@@ -262,7 +270,21 @@
       <option name="project" value="LOCAL" />
       <updated>1710255929609</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Aggiunti commenti per test analisi prestazioni">
+      <created>1710282226103</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1710282226103</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Maven build">
+      <created>1710286931659</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1710286931659</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +332,9 @@
     <MESSAGE value="Risolto problema spazi bianchi durante scrittura su file xml" />
     <MESSAGE value="Aggiunti spartiti d'esempio" />
     <MESSAGE value="Commentati cambiamenti fitness" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commentati cambiamenti fitness" />
+    <MESSAGE value="Aggiunti commenti per test analisi prestazioni" />
+    <MESSAGE value="Maven build" />
+    <option name="LAST_COMMIT_MESSAGE" value="Maven build" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

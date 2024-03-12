@@ -41,7 +41,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>java.logic.Coordinator</mainClass>
+                            <mainClass>src.main.java.logic.Coordinator</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
