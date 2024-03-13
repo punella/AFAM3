@@ -15,10 +15,10 @@ public class Coordinator {
     private static ProcessingWindow processingWindow;
     private static FileChoosingWindow fileChoosingWindow;
 
-    public static void main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) {
 
         //Look and feel
-        FlatLightLaf.setup();
+        //FlatLightLaf.setup();
 
         coordinator = new Coordinator();
         fileChoosingWindow = new FileChoosingWindow(coordinator);
