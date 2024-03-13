@@ -9,10 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Maven build">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Eliminata icona">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/FileChoosingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/FileChoosingWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/MusicSheetFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/MusicSheetFileHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,33 +57,30 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="MavenRunner">
-    <option name="delegateBuildToMaven" value="true" />
-  </component>
   <component name="ProjectId" id="2Z81Qu6hVNTv39KHdBysXadprss" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Naomi/Desktop/FIA/AFAM3/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Naomi/Desktop/FIA/AFAM3/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Naomi\Desktop\FIA\AFAM3\src\main\resources" />
@@ -122,7 +119,8 @@
       <workItem from="1709571566555" duration="44281000" />
       <workItem from="1710186225729" duration="18067000" />
       <workItem from="1710280971763" duration="1267000" />
-      <workItem from="1710283114025" duration="7514000" />
+      <workItem from="1710283114025" duration="9263000" />
+      <workItem from="1710329924130" duration="1411000" />
     </task>
     <task id="LOCAL-00001" summary="Created project">
       <created>1701789506457</created>
@@ -334,7 +332,21 @@
       <option name="project" value="LOCAL" />
       <updated>1710290010016</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Eliminata icona">
+      <created>1710290752838</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1710290752838</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Eliminata icona">
+      <created>1710290918655</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1710290918655</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,7 +397,8 @@
     <MESSAGE value="Aggiunti commenti per test analisi prestazioni" />
     <MESSAGE value="Laf exception" />
     <MESSAGE value="Maven build" />
-    <option name="LAST_COMMIT_MESSAGE" value="Maven build" />
+    <MESSAGE value="Eliminata icona" />
+    <option name="LAST_COMMIT_MESSAGE" value="Eliminata icona" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -182,7 +182,8 @@ public class MusicSheetFileHandler {
 
         //Scrittura su file
         try {
-            Transformer tf = TransformerFactory.newInstance().newTransformer(new StreamSource(new File("./src/main/resources/XSLT.xslt")));
+            //Transformer tf = TransformerFactory.newInstance().newTransformer(new StreamSource(new File("main/resources/XSLT.xslt")));
+            Transformer tf = TransformerFactory.newInstance().newTransformer(new StreamSource(getClass().getResourceAsStream("/XSLT.xslt")));
             tf.setOutputProperty(OutputKeys.INDENT, "yes");
             tf.setOutputProperty(OutputKeys.METHOD, "xml");
             tf.setOutputProperty(OutputKeys.STANDALONE, "no");
