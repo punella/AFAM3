@@ -17,7 +17,7 @@ public class FileChoosingWindow extends JFrame {
         this.coordinator = coordinator;
 
         setTitle("AFAM3");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconLogo.png")));
+        //setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconLogo.png")));
 
         JLabel label = new JLabel("File selezionato:");
         path = new JTextField(20);
