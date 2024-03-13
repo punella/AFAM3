@@ -18,7 +18,7 @@ public class Coordinator {
     public static void main(String[] args) {
 
         //Look and feel
-        //FlatLightLaf.setup();
+        FlatLightLaf.setup();
 
         coordinator = new Coordinator();
         fileChoosingWindow = new FileChoosingWindow(coordinator);

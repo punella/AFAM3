@@ -9,8 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Maven build">
-      <change beforePath="$PROJECT_DIR$/src/main/java/logic/Coordinator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/Coordinator.java" afterDir="false" />
+    <list default="true" id="e5b9fcb7-9a74-4d46-8b0d-e02edc248167" name="Changes" comment="Laf exception">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +121,7 @@
       <workItem from="1709571566555" duration="44281000" />
       <workItem from="1710186225729" duration="18067000" />
       <workItem from="1710280971763" duration="1267000" />
-      <workItem from="1710283114025" duration="5812000" />
+      <workItem from="1710283114025" duration="6815000" />
     </task>
     <task id="LOCAL-00001" summary="Created project">
       <created>1701789506457</created>
@@ -311,7 +312,21 @@
       <option name="project" value="LOCAL" />
       <updated>1710288763553</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Laf exception">
+      <created>1710289037984</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1710289037984</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Laf exception">
+      <created>1710289302824</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1710289302824</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,7 +376,8 @@
     <MESSAGE value="Commentati cambiamenti fitness" />
     <MESSAGE value="Aggiunti commenti per test analisi prestazioni" />
     <MESSAGE value="Maven build" />
-    <option name="LAST_COMMIT_MESSAGE" value="Maven build" />
+    <MESSAGE value="Laf exception" />
+    <option name="LAST_COMMIT_MESSAGE" value="Laf exception" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
