@@ -17,7 +17,7 @@ public class ProcessingWindow extends JFrame {
         this.coordinator = coordinator;
 
         setTitle("AFAM3");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconLogo.png")));
+        //setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconLogo.png")));
 
         Box box = new Box(BoxLayout.Y_AXIS);
         EmptyBorder border = new EmptyBorder(20,20,20,20);
